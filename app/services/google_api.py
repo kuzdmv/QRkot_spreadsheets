@@ -57,7 +57,7 @@ async def spreadsheets_update_value(
         ['Название проекта', 'Время сбора', 'Описание']
     ]
     for project in projects:
-        delta = project.close_date-project.create_date
+        delta = project.close_date - project.create_date
         new_row = [str(project.name), str(delta), str(project.description)]
         table_values.append(new_row)
 
@@ -65,7 +65,7 @@ async def spreadsheets_update_value(
         'majorDimension': 'ROWS',
         'values': table_values
     }
-    response = await wrapper_services.as_service_account(
+    await wrapper_services.as_service_account(
         service.spreadsheets.values.update(
             spreadsheetId=spreadsheetid,
             range='A1:E30',
